@@ -9,8 +9,8 @@ const Homepage = () => {
     return (
         <div>
             <SearchBar />
-            <section className='max-w-[1250px] mx-auto'>
-                <Categories/>
+            <section className='max-w-[1250px] mx-auto px-4'>
+                <Categories />
                 <Blogs />
             </section>
         </div>

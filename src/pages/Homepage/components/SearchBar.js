@@ -1,5 +1,4 @@
 import React from 'react'
-import { BiSearch } from 'react-icons/bi'
 
 const SearchBar = () => {
     return (
@@ -8,11 +7,8 @@ const SearchBar = () => {
                 <figure className=''>
                     <img src="https://cdni.iconscout.com/illustration/premium/thumb/blog-writer-working-on-article-5691583-4759515.png" alt='blog' className="h-80" />
                 </figure>
-                <div className='w-1/2'>
-                    <form className='flex items-center'>
-                        <input type="text" placeholder="Search Blog" className="input bg-white input-bordered rounded-full border-primary w-full max-w-xs focus:outline-none focus:bg-secondary" />
-                        <button type="submit" className="btn btn-primary rounded-full -ml-10">< BiSearch className='text-xl' /></button>
-                    </form>
+                <div className='lg:w-1/2'>
+                    <h2 className='text-3xl font-bold text-neutral'>Read Blogs, Articles and <br/>Stories at <span className='text-primary'>Uptodate</span></h2>
                 </div>
             </div>
         </div>

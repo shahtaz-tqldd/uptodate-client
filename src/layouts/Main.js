@@ -6,9 +6,11 @@ import Navbar from '../components/Navbar'
 const Main = () => {
     return (
         <>
-            <Navbar/>
-            <Outlet />
-            <Footer/>
+            <Navbar />
+            <div className='mt-16'>
+                <Outlet />
+            </div>
+            <Footer />
         </>
     )
 }

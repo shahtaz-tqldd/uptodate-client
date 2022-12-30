@@ -19,7 +19,7 @@ const Register = () => {
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const imgHostKey = process.env.REACT_APP_imgbb_key
+  const imgHostKey = process.env.REACT_APP_img_bb_key
   const handleRegister = (data) => {
     const { name, email, password, password2 } = data
 

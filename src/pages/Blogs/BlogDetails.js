@@ -30,7 +30,7 @@ const BlogDetails = () => {
         },
     ]
     return (
-        <section className='max-w-[980px] mx-auto mt-4'>
+        <section className='max-w-[980px] mx-auto pt-4 px-4'>
             <Link to='/' className='text-primary text-4xl -ml-16 mt-2 fixed'><BsArrowLeftCircleFill /></Link>
             <img src={img} alt="" className='w-full h-[300px] object-cover rounded-lg' />
             <h1 className='text-4xl font-bold mt-4'>{title}</h1>
