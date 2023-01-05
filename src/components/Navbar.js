@@ -5,6 +5,8 @@ import { IoIosArrowDropdownCircle } from 'react-icons/io'
 import { AuthContext } from '../context/AuthProvider'
 import { toast } from 'react-hot-toast'
 import { BiSearch } from 'react-icons/bi'
+import useAdmin from '../hooks/useAdmin'
+import useBlogger from '../hooks/useBlogger'
 const categories = [
     "All",
     "Lifestyle",
@@ -19,6 +21,8 @@ const categories = [
 ]
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext)
+    const [isAdmin] = useAdmin(user?.email)
+    const [isBlogger] = useBlogger(user?.email)
     const menuItems = <>
         {
             categories.map((c, i) => <li key={i} className='text-primary'><Link to='/'>{c}</Link></li>)
@@ -74,8 +78,13 @@ const Navbar = () => {
                                     <IoIosArrowDropdownCircle className='text-xl cursor-pointer text-warning' />
                                 </label>
                                 <ul tabIndex={0} className="menu menu-compact dropdown-content -ml-44 mt-6 p-2 shadow bg-secondary rounded-lg text-primary w-52">
-                                    <li><Link to='/dashboard'>Dashboard</Link></li>
-                                    <li><Link to='/dashboard/Blogs'>Blogs</Link></li>
+                                    {
+                                        (isAdmin || isBlogger) &&
+                                        <>
+                                            <li><Link to='/dashboard'>Dashboard</Link></li>
+                                            <li><Link to='/dashboard/Blogs'>Blogs</Link></li>
+                                        </>
+                                    }
                                     <li><button onClick={handleLogout} className="bg-error font-bold mt-4 w-full text-white hover:bg-[#E97777]">Logout</button></li>
                                 </ul>
                             </div>

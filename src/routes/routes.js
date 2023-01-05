@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Main from "../layouts/Main";
+import BloggerRequestPage from "../pages/BloggerRequest/BloggerRequestPage";
 import BlogDetails from "../pages/Blogs/BlogDetails";
+import BloggerRequest from "../pages/Dashboard.js/Bloggers/BloggerRequest";
 import Bloggers from "../pages/Dashboard.js/Bloggers/Bloggers";
 import BlogsDashboard from "../pages/Dashboard.js/BlogsDashboard/BlogsDashboard";
 import Dashboard from "../pages/Dashboard.js/Dashboard";
@@ -23,7 +25,12 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/blogs/:id',
-                element: <BlogDetails/>
+                element: <BlogDetails />,
+                loader: async({params})=> await fetch(`http://localhost:5000/blogs/${params.id}`)
+            },
+            {
+                path: '/blogger-request',
+                element: <BloggerRequestPage />
             },
             {
                 path: '/login',
@@ -52,6 +59,10 @@ export const routes = createBrowserRouter([
                     {
                         path: '/dashboard/bloggers',
                         element: <Bloggers/>
+                    },
+                    {
+                        path: '/dashboard/blogger-request',
+                        element: <BloggerRequest/>
                     },
                     {
                         path: '/dashboard/users',

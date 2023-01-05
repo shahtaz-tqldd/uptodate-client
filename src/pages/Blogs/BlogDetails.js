@@ -1,11 +1,12 @@
 import React from 'react'
 import { MdAccessTime, MdDateRange } from 'react-icons/md'
 import { BsArrowLeftCircleFill } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
 import CommentCard from './CommentCard'
 import useTitle from '../../hooks/useTitle'
 
 const BlogDetails = () => {
+    const data = useLoaderData()
     const blog = {
         "_id": 1,
         "title": "Something like this",
@@ -17,7 +18,7 @@ const BlogDetails = () => {
             "technology", "lifestyles", "dream", "life"
         ]
     }
-    const { title, body, img, author, date, tags } = blog
+    const { title, body, img, author, date, tags } = data
     useTitle(title)
     const comments = [
         {
@@ -68,10 +69,10 @@ const BlogDetails = () => {
                 }
             </div>
             {/* blog body */}
-            <p className='mt-2 text-[16px]' dangerouslySetInnerHTML={{ __html: body }} />
-
+            <div className='mt-2 text-[16px]' dangerouslySetInnerHTML={{ __html: body }} />
+            
             {/* comments */}
-            <h2 className='mt-6 text-xl font-bold text-primary mb-4'>Comments</h2>
+            <h2 className='mt-12 text-xl font-bold text-primary mb-4'>Comments</h2>
             {/* comment body */}
 
             <div className='lg:w-3/4 grid grid-cols-1 gap-4'>

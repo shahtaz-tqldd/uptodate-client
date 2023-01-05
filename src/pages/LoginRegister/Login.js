@@ -59,7 +59,7 @@ const Login = () => {
           </span>
           {errors.password && <span className='text-error flex items-center gap-1'><BiError />{errors.password.message}</span>}
 
-          <button onClick={handleForgotPassword} className='text-sm'>Forgot Password?</button>
+          <span onClick={handleForgotPassword} className='text-sm cursor-pointer text-primary'>Forgot Password?</span>
           <input type="submit" value="Login" className="btn btn-primary text-white w-full rounded-md mt-4 mb-3" />
         </form>
 
