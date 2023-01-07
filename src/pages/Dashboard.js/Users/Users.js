@@ -8,13 +8,13 @@ const Users = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/users')
+      const res = await fetch('https://dev-blog-server.vercel.app/users')
       const data = await res.json()
       return data;
     }
   })
   const handleDelete = id => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://dev-blog-server.vercel.app/users/${id}`, {
       method: 'DELETE'
     })
       .then(res => res.json())
@@ -56,7 +56,9 @@ const Users = () => {
               <span className='text-sm uppercase text-info'>{user.role ==='blogger' && 'Blogger'}</span>
             </th>
             <th>
-              <label htmlFor='delete-modal' onClick={() => setId(user._id)} className="cursor-pointer flex items-center text-error text-sm gap-1">Remove<MdRemoveCircle className='mt-1' /></label>
+              <label htmlFor='delete-modal' onClick={() => setId(user._id)}
+                className="cursor-pointer flex items-center text-error text-sm gap-1">Remove<MdRemoveCircle className='mt-1' />
+              </label>
             </th>
           </tr>
           )}

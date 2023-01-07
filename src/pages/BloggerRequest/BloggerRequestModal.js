@@ -6,21 +6,13 @@ import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 const BloggerRequestModal = () => {
-    const { user } = useContext(AuthContext)
+    const { user, categories } = useContext(AuthContext)
     const navigate = useNavigate()
 
-    const categories = <>
-        <option>HTML</option>
-        <option>CSS</option>
-        <option>TAilwind CSS</option>
-        <option>Bootstrap</option>
-        <option>JavaScript</option>
-        <option>React JS</option>
-        <option>Node JS</option>
-        <option>Express</option>
-        <option>Firebase</option>
-        <option>JWT Authentication</option>
-        <option>Mongo DB</option>
+    const categoryOptions = <>
+        {
+            categories?.map(c => <option key={c._id}>{c.category}</option>)
+        }
     </>
     const [content, setContent] = useState('')
 
@@ -40,7 +32,7 @@ const BloggerRequestModal = () => {
             authorImg: user.photoURL,
         }
 
-        fetch('http://localhost:5000/blogger-request', {
+        fetch('https://dev-blog-server.vercel.app/blogger-request', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -74,7 +66,7 @@ const BloggerRequestModal = () => {
                             <div className='w-1/4 flex flex-col'>
                                 <label className='text-neutral text-lg font-bold mb-1'>Select a category</label>
                                 <select {...register("category", { required: "This field can not be empty" })} type="text" placeholder="set a category" className="input input-bordered">
-                                    {categories}
+                                    {categoryOptions}
                                 </select>
                                 {errors.category && <span className='text-error'>{errors.category.message}</span>}
                             </div>
@@ -93,7 +85,7 @@ const BloggerRequestModal = () => {
                         {/* about you */}
                         <div className='mt-8'>
                             <label className='text-neutral text-lg font-bold'>Tell us about yourself</label>
-                            <textarea {...register("about", { required: "This field can not be empty" })} placeholder='Write Here...' className='mt-1 w-full h-40 p-2 rounded' />
+                            <textarea {...register("about", { required: "This field can not be empty" })} placeholder='Who are you, what makes you a good writter, why do you write...' className='mt-1 w-full h-40 p-2 rounded' />
                             {errors.about && <span className='text-error'>{errors.about.message}</span>}
                         </div>
 

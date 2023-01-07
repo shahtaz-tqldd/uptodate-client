@@ -7,25 +7,17 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 
 const WriteBlogModal = () => {
-    const { user } = useContext(AuthContext)
+    const { user, categories } = useContext(AuthContext)
     const navigate = useNavigate()
     const [tagBtn, setTagBtn] = useState(0)
     let tagBtnNum = [1]
     for (let i = 0; i < tagBtn; i++) {
         tagBtnNum.push(1)
     }
-    const categories = <>
-        <option>HTML</option>
-        <option>CSS</option>
-        <option>TAilwind CSS</option>
-        <option>Bootstrap</option>
-        <option>JavaScript</option>
-        <option>React JS</option>
-        <option>Node JS</option>
-        <option>Express</option>
-        <option>Firebase</option>
-        <option>JWT Authentication</option>
-        <option>Mongo DB</option>
+    const categoryOptions = <>
+        {
+            categories?.map(c => <option key={c._id}>{c.category}</option>)
+        }
     </>
     const [content, setContent] = useState('')
 
@@ -34,7 +26,9 @@ const WriteBlogModal = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const date = format(new Date(), 'PP')
     const imgHostKey = process.env.REACT_APP_img_bb_key
-
+    
+    const readTime = Math.ceil((content.length / 2000))
+    console.log(readTime)
     const handleBlogSubmit = data => {
         const { title, category } = data
         let tags = [];
@@ -48,8 +42,9 @@ const WriteBlogModal = () => {
             category,
             tags,
             date,
+            readTime,
             author: user?.displayName,
-            authorEmail : user?.email,
+            authorEmail: user?.email,
             authorImg: user?.photoURL,
         }
         const formData = new FormData()
@@ -64,7 +59,7 @@ const WriteBlogModal = () => {
                     const img = imgData.data.url;
                     const blogInfoWithImg = { ...blogInfo, img }
 
-                    fetch('http://localhost:5000/blogs', {
+                    fetch('https://dev-blog-server.vercel.app/blogs', {
                         method: 'POST',
                         headers: {
                             'Content-type': 'application/json'
@@ -96,7 +91,7 @@ const WriteBlogModal = () => {
 
                         {/* categories */}
                         <select {...register("category", { required: "This field can not be empty" })} type="text" placeholder="set a category" className="my-2 mr-3 input input-bordered w-1/4">
-                            {categories}
+                            {categoryOptions}
                         </select>
                         {errors.category && <span className='text-error'>{errors.category.message}</span>}
 
@@ -113,7 +108,7 @@ const WriteBlogModal = () => {
                             onChange={newContent => setContent(newContent)}
                             className="text-[#000] mt-4"
                         />
-                        
+
                         {/* tags */}
                         <div className='text-lg font-bold text-primary mt-3'>Tags</div>
                         {

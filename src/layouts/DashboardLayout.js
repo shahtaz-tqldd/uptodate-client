@@ -14,7 +14,7 @@ const DashboardLayout = () => {
     const barLocal = location?.pathname?.split('/').slice(-1)[0]
     return (
         <div className='flex'>
-            <div className="lg:w-1/5 flex flex-col gap-3 text-[16px] bg-secondary p-6 h-[60vh] sticky top-20">
+            <div className="lg:w-1/5 flex flex-col gap-3 text-[16px] bg-secondary px-10 pt-10 pb-16 fixed top-16">
                 <Link
                     to='/dashboard'
                     className={`flex items-center gap-2 ${barLocal === 'dashboard' && 'tab-active text-success font-bold'}`}>
@@ -46,10 +46,16 @@ const DashboardLayout = () => {
                             className={`flex items-center gap-2 ${barLocal === 'users' && 'tab-active text-success font-bold'}`}>
                             <VscWorkspaceTrusted />All Users
                         </Link>
+
+                        <Link
+                            to='/dashboard/categories'
+                            className={`flex items-center gap-2 ${barLocal === 'categories' && 'tab-active text-success font-bold'}`}>
+                            <BiOutline />Categories
+                        </Link>
                     </>
                 }
             </div>
-            <div>
+            <div className='ml-[20%] min-h-[60vh]'>
                 <label htmlFor="blog-write-modal" className='btn btn-sm btn-error text-white rounded px-12 absolute right-16 top-20'>Write +</label>
                 <WriteBlogModal />
                 <Outlet />

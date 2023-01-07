@@ -5,7 +5,7 @@ const useBlogger = (email) => {
     const [isBloggerLoading, setIsBloggerLoading] = useState(true)
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/blogger/${email}`)
+            fetch(`https://dev-blog-server.vercel.app/users/blogger/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     setIsBlogger(data.isBlogger)

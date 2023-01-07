@@ -6,6 +6,7 @@ import BlogDetails from "../pages/Blogs/BlogDetails";
 import BloggerRequest from "../pages/Dashboard.js/Bloggers/BloggerRequest";
 import Bloggers from "../pages/Dashboard.js/Bloggers/Bloggers";
 import BlogsDashboard from "../pages/Dashboard.js/BlogsDashboard/BlogsDashboard";
+import CategoriesPage from "../pages/Dashboard.js/CatogoriesPage/CategoriesPage";
 import Dashboard from "../pages/Dashboard.js/Dashboard";
 import Users from "../pages/Dashboard.js/Users/Users";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
@@ -13,6 +14,7 @@ import Homepage from "../pages/Homepage/Homepage";
 import Login from "../pages/LoginRegister/Login";
 import Register from "../pages/LoginRegister/Register";
 import AdminRoute from "./AdminRoute";
+import PrivateRoute from "./PrivateRoute";
 
 export const routes = createBrowserRouter([
     {
@@ -26,11 +28,11 @@ export const routes = createBrowserRouter([
             {
                 path: '/blogs/:id',
                 element: <BlogDetails />,
-                loader: async({params})=> await fetch(`http://localhost:5000/blogs/${params.id}`)
+                loader: async({params})=> await fetch(`https://dev-blog-server.vercel.app/blogs/${params.id}`)
             },
             {
                 path: '/blogger-request',
-                element: <BloggerRequestPage />
+                element: <PrivateRoute><BloggerRequestPage /></PrivateRoute>
             },
             {
                 path: '/login',
@@ -63,6 +65,10 @@ export const routes = createBrowserRouter([
                     {
                         path: '/dashboard/blogger-request',
                         element: <BloggerRequest/>
+                    },
+                    {
+                        path: '/dashboard/categories',
+                        element: <CategoriesPage/>
                     },
                     {
                         path: '/dashboard/users',

@@ -7,25 +7,14 @@ import { toast } from 'react-hot-toast'
 import { BiSearch } from 'react-icons/bi'
 import useAdmin from '../hooks/useAdmin'
 import useBlogger from '../hooks/useBlogger'
-const categories = [
-    "All",
-    "Lifestyle",
-    "Technology",
-    "Science",
-    "Philosophy",
-    "Art",
-    "Culture",
-    "Education",
-    "Sports",
-    "Travel"
-]
 const Navbar = () => {
+    const {categories} = useContext(AuthContext)
     const { user, logout } = useContext(AuthContext)
     const [isAdmin] = useAdmin(user?.email)
     const [isBlogger] = useBlogger(user?.email)
     const menuItems = <>
         {
-            categories.map((c, i) => <li key={i} className='text-primary'><Link to='/'>{c}</Link></li>)
+            categories?.map((c, i) => <li key={i} className='text-primary'><Link to='/'>{c.category}</Link></li>)
         }
 
     </>

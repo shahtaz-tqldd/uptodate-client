@@ -9,13 +9,13 @@ const Bloggers = () => {
   const { data: bloggers = [], refetch } = useQuery({
     queryKey: ['bloggers'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/bloggers')
+      const res = await fetch('https://dev-blog-server.vercel.app/bloggers')
       const data = await res.json()
       return data;
     }
   })
   const handleDelete = id => {
-    fetch(`http://localhost:5000/bloggers/${id}`, {
+    fetch(`https://dev-blog-server.vercel.app/bloggers/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'
@@ -59,7 +59,7 @@ const Bloggers = () => {
                   </div>
                 </td>
                 <th>
-                  <a href='#' target="_blank" rel="noreferrer" className="text-info hover:text-primary text-sm">See Profile</a>
+                  <a href='/profile' target="_blank" rel="noreferrer" className="text-info hover:text-primary text-sm">See Profile</a>
                 </th>
                 <th>
                   <label htmlFor='delete-modal' onClick={() => setId(blogger._id)} className="cursor-pointer flex items-center text-error text-sm gap-1">Remove<MdRemoveCircle className='mt-1' /></label>

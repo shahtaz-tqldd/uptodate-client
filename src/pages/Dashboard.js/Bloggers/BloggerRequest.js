@@ -13,13 +13,13 @@ const BloggerRequest = () => {
     const { data: bloggerReq = [], refetch } = useQuery({
         queryKey: ['bloggerReq'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/blogger-request')
+            const res = await fetch('https://dev-blog-server.vercel.app/blogger-request')
             const data = await res.json()
             return data;
         }
     })
     const handleDelete = id => {
-        fetch(`http://localhost:5000/blogger-request/${id}`, {
+        fetch(`https://dev-blog-server.vercel.app/blogger-request/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -30,7 +30,7 @@ const BloggerRequest = () => {
             })
     }
     const handleConfirm = (email, id) => {
-        fetch(`http://localhost:5000/blogger-request/${email}`, {
+        fetch(`https://dev-blog-server.vercel.app/blogger-request/${email}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'

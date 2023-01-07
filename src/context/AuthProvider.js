@@ -11,6 +11,7 @@ import {
     updateProfile
 } from 'firebase/auth'
 import { app } from '../firebase/firebase.config'
+import { useQuery } from '@tanstack/react-query'
 const auth = getAuth(app)
 
 export const AuthContext = createContext()
@@ -63,6 +64,15 @@ const AuthProvider = ({ children }) => {
         return () => unsubscribe()
     }, [])
 
+    // categories
+    const { data: categories = [], refetch } = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
+            const res = await fetch('https://dev-blog-server.vercel.app/categories')
+            const data = await res.json()
+            return data
+        }
+    })
     const authInfo = {
         emailRegister,
         emailLogin,
@@ -72,6 +82,8 @@ const AuthProvider = ({ children }) => {
         googleLogin,
         user,
         loading,
+        categories,
+        refetch
     }
     return (
         <AuthContext.Provider value={authInfo}>

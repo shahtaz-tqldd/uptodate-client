@@ -11,13 +11,13 @@ const BlogsDashboard = () => {
   const { data: blogs = [], refetch } = useQuery({
     queryKey: ['blogs'],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/dashboard/blogs/${user?.email}`)
+      const res = await fetch(`https://dev-blog-server.vercel.app/dashboard/blogs/${user?.email}`)
       const data = await res.json()
       return data;
     }
   })
   const handleDelete = id => {
-    fetch(`http://localhost:5000/blogs/${id}`, {
+    fetch(`https://dev-blog-server.vercel.app/blogs/${id}`, {
       method: 'DELETE',
     })
       .then(res => res.json())

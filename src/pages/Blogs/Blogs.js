@@ -6,7 +6,7 @@ const Blogs = () => {
     const { data: blogs = []} = useQuery({
         queryKey: ['blogs'],
         queryFn: async () => {
-            const result = await fetch('http://localhost:5000/blogs')
+            const result = await fetch('https://dev-blog-server.vercel.app/blogs')
             const data = await result.json()
             return data
         }
