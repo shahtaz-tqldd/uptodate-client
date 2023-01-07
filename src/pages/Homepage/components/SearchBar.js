@@ -10,7 +10,7 @@ const SearchBar = () => {
                 </figure>
                 <div className='lg:w-1/2'>
                     <h2 className='text-3xl font-bold text-neutral'>Read Blogs, Articles and <br />Stories at <span className='text-primary'>Uptodate</span></h2>
-                    <div className='mt-12'><Link to='/blogger-request'>Want to Right Blog?</Link></div>
+                    <div className='mt-12'><Link to='/blogger-request'>Want to Write Blog?</Link></div>
                 </div>
             </div>
         </div>

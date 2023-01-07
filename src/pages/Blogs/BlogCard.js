@@ -20,7 +20,6 @@ const BlogCard = ({ blog }) => {
                 </div>
                 {/* <p dangerouslySetInnerHTML={{ __html: body.slice(0, 200) }}></p> */}
                 <p className='absolute top-3 right-0 bg-white px-4 rounded-l-full opacity-90'>{category}</p>
-                {/* <p>{body.slice(0, 130) + '...Read more'}</p> */}
                 <div className='flex gap-2 text-xs '>
 
                 {tags.map(tag => <span className='px-3 py-1 bg-accent rounded'>{ tag}</span>)}

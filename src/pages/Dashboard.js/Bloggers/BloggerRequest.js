@@ -7,7 +7,7 @@ import ConfirmModal from '../components/ConfirmModal'
 import DeleteModal from '../components/DeleteModal'
 
 const BloggerRequest = () => {
-    const [email, setEmail] = useState(null)
+    const [confirm, setConfirm] = useState(null)
     const [id, setId] = useState(null)
     const [data, setData] = useState(null)
     const { data: bloggerReq = [], refetch } = useQuery({
@@ -29,7 +29,7 @@ const BloggerRequest = () => {
                 setId(null)
             })
     }
-    const handleConfirm = email => {
+    const handleConfirm = (email, id) => {
         fetch(`http://localhost:5000/blogger-request/${email}`, {
             method: 'PUT',
             headers: {
@@ -40,7 +40,8 @@ const BloggerRequest = () => {
             .then(() => {
                 toast.success('Blogger added successfully!')
                 refetch()
-                setEmail(null)
+                setConfirm(null)
+                handleDelete(id)
             })
     }
     return (
@@ -78,7 +79,7 @@ const BloggerRequest = () => {
                                     <label htmlFor='blog-content-modal' onClick={() => setData({ body: blogger.body, title: blogger.title })} className="cursor-pointer flex items-center text-primary text-sm gap-1">Content</label>
                                 </th>
                                 <th>
-                                    <label htmlFor='confirm-modal' onClick={() => setEmail(blogger.authorEmail)} className="cursor-pointer flex items-center text-info text-sm gap-1"><MdVerified className='mt-[2px]' />Approve</label>
+                                    <label htmlFor='confirm-modal' onClick={() => setConfirm({email:blogger.authorEmail, id: blogger._id})} className="cursor-pointer flex items-center text-info text-sm gap-1"><MdVerified className='mt-[2px]' />Approve</label>
                                 </th>
                                 <th>
                                     <label htmlFor='delete-modal' onClick={() => setId(blogger._id)} className="cursor-pointer flex items-center text-error text-sm gap-1">Remove<MdRemoveCircle className='mt-1' /></label>
@@ -96,8 +97,8 @@ const BloggerRequest = () => {
                 id &&
                 <DeleteModal handleDelete={handleDelete} id={id} />
             }
-            {email &&
-                <ConfirmModal handleConfirm={handleConfirm} id={email} />
+            {confirm &&
+                <ConfirmModal handleConfirm={handleConfirm} confirm={confirm} />
             }
             {
                 data &&

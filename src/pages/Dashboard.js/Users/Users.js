@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { MdDelete } from 'react-icons/md'
+import { MdRemoveCircle } from 'react-icons/md'
 import DeleteModal from '../components/DeleteModal'
 const Users = () => {
   const [id, setId] = useState(null)
@@ -32,7 +32,7 @@ const Users = () => {
           <tr>
             <th></th>
             <th>Name</th>
-            <th>Details</th>
+            <th>Role</th>
             <th>Remove</th>
           </tr>
         </thead>
@@ -53,10 +53,10 @@ const Users = () => {
               </div>
             </td>
             <th>
-              <button className="btn btn-ghost btn-xs">Details</button>
+              <span className='text-sm uppercase text-info'>{user.role ==='blogger' && 'Blogger'}</span>
             </th>
             <th>
-              <label htmlFor='delete-modal' onClick={() => setId(user._id)} className="cursor-pointer text-2xl text-error"><MdDelete /></label>
+              <label htmlFor='delete-modal' onClick={() => setId(user._id)} className="cursor-pointer flex items-center text-error text-sm gap-1">Remove<MdRemoveCircle className='mt-1' /></label>
             </th>
           </tr>
           )}

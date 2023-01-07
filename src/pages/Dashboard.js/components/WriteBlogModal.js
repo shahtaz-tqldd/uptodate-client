@@ -48,8 +48,9 @@ const WriteBlogModal = () => {
             category,
             tags,
             date,
-            author: user.displayName,
-            authorImg: user.photoURL,
+            author: user?.displayName,
+            authorEmail : user?.email,
+            authorImg: user?.photoURL,
         }
         const formData = new FormData()
         formData.append('image', image)

@@ -1,6 +1,7 @@
 import React from 'react'
 
-const ConfirmModal = ({handleConfirm, id}) => {
+const ConfirmModal = ({ handleConfirm, confirm }) => {
+    const {email, id} = confirm
     return (
         <div><div>
             <input type="checkbox" id="confirm-modal" className="modal-toggle" />
@@ -10,7 +11,7 @@ const ConfirmModal = ({handleConfirm, id}) => {
                     <p className="py-4">Are you sure about this action?</p>
                     <div className="modal-action">
                         <label htmlFor="confirm-modal" className="btn">Cancel</label>
-                        <button onClick={() => handleConfirm(id)} className="ml-3 btn btn-primary text-white">Confirm</button>
+                        <button onClick={() => handleConfirm(email, id)} className="ml-3 btn btn-primary text-white">Confirm</button>
                     </div>
                 </div>
             </div>
