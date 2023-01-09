@@ -1,7 +1,6 @@
 import React from 'react'
 import useTitle from '../../hooks/useTitle'
 import Blogs from '../Blogs/Blogs'
-import Categories from './components/Categories'
 import SearchBar from './components/SearchBar'
 
 const Homepage = () => {
@@ -10,7 +9,7 @@ const Homepage = () => {
         <div>
             <SearchBar />
             <section className='max-w-[1250px] mx-auto px-4'>
-                <Categories />
+                {/* <Categories setCategory={setCategory} category={category} /> */}
                 <Blogs />
             </section>
         </div>

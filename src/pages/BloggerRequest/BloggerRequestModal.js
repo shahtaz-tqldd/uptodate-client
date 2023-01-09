@@ -3,6 +3,7 @@ import JoditEditor from 'jodit-react';
 import React, { useContext, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { HiLightBulb } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 const BloggerRequestModal = () => {
@@ -88,6 +89,8 @@ const BloggerRequestModal = () => {
                             <textarea {...register("about", { required: "This field can not be empty" })} placeholder='Who are you, what makes you a good writter, why do you write...' className='mt-1 w-full h-40 p-2 rounded' />
                             {errors.about && <span className='text-error'>{errors.about.message}</span>}
                         </div>
+
+                        <a href='/payment-condition' target='_blank' rel="noreferrer" className='text-error font-bold my-3 flex items-center gap-2'><HiLightBulb/> Terms and Condition of Payment</a>
 
                         <div className='flex justify-center mt-10'>
                             <input type="submit" value="submit" className="btn btn-wide btn-primary text-white" />

@@ -1,8 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { AuthContext } from '../../../context/AuthProvider'
 
-const Categories = () => {
-    const [category, setCategory] = useState('All')
+const Categories = ({setCategory, category}) => {
     const { categories } = useContext(AuthContext)
     return (
         <div className='hidden md:flex lg:flex flex-wrap gap-6 mb-8 text-white sticky top-16 bg-base-100 z-10 py-3'>

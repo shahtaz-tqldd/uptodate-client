@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import PaymentCondition from "../components/PaymentCondition";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Main from "../layouts/Main";
 import BloggerRequestPage from "../pages/BloggerRequest/BloggerRequestPage";
@@ -8,6 +9,8 @@ import Bloggers from "../pages/Dashboard.js/Bloggers/Bloggers";
 import BlogsDashboard from "../pages/Dashboard.js/BlogsDashboard/BlogsDashboard";
 import CategoriesPage from "../pages/Dashboard.js/CatogoriesPage/CategoriesPage";
 import Dashboard from "../pages/Dashboard.js/Dashboard";
+import FavouritePost from "../pages/Dashboard.js/Profile/FavouritePost";
+import SavedPost from "../pages/Dashboard.js/Profile/SavedPost";
 import Users from "../pages/Dashboard.js/Users/Users";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Homepage from "../pages/Homepage/Homepage";
@@ -32,7 +35,19 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/blogger-request',
-                element: <PrivateRoute><BloggerRequestPage /></PrivateRoute>
+                element: <BloggerRequestPage />
+            },
+            {
+                path: '/payment-condition',
+                element: <PaymentCondition />
+            },
+            {
+                path: '/dashboard/saved',
+                element: <PrivateRoute><SavedPost/></PrivateRoute>
+            },
+            {
+                path: '/dashboard/favourite',
+                element: <PrivateRoute><FavouritePost/></PrivateRoute>
             },
             {
                 path: '/login',

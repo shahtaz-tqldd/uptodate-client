@@ -2,7 +2,7 @@ import { useEffect } from "react"
 
 const useTitle = (title) => {
     useEffect(() => {
-        document.title = `Uptodate Blog- ${title}`
+        document.title = `Hash Read - ${title}`
         window.scrollTo({ top: 0 })
     }, [title])
 }

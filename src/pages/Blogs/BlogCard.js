@@ -28,13 +28,13 @@ const BlogCard = ({ blog }) => {
                     <div className='flex gap-2 text-xs '>
                         {tags.map(tag => <span className='px-3 py-1 bg-accent rounded'>{tag}</span>)}
                     </div>
-                    <p className='absolute top-3 right-0 bg-warning text-white font-bold px-6 py-2 rounded-l-full'>{category}</p>
+                    <p className='absolute top-3 right-0 bg-success opacity-90 px-5 py-[6px] rounded-l-lg shadow-lg'>{category}</p>
                     <div className='flex items-center justify-between mt-3'>
                         <div className='flex items-center text-blue-400 gap-2'>
                             <MdDateRange />
                             <small>{date}</small>
                         </div>
-                        <small className='text-pink-500'>{readTime} mins read</small>
+                        <small className='text-pink-500'>{ readTime} {readTime>1 ? 'mins':'min'} read</small>
                     </div>
                 </div>
             </div>

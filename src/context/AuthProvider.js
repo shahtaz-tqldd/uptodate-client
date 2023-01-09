@@ -18,6 +18,7 @@ export const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
+    const [search, setSearch] = useState('')
     const [loading, setLoading] = useState(true)
 
     // create new user
@@ -83,7 +84,9 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         categories,
-        refetch
+        refetch,
+        search,
+        setSearch
     }
     return (
         <AuthContext.Provider value={authInfo}>

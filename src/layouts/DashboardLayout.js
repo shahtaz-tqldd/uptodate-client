@@ -1,8 +1,11 @@
 import React, { useContext } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { VscWorkspaceTrusted } from 'react-icons/vsc'
-import { BiGridAlt, BiNews, BiOutline } from 'react-icons/bi'
+import { HiUserAdd, HiUsers } from 'react-icons/hi'
+import { BiNews } from 'react-icons/bi'
+import { FaUserEdit } from 'react-icons/fa'
+import { RiUserFill } from 'react-icons/ri'
+import { MdCategory } from 'react-icons/md'
 import WriteBlogModal from '../pages/Dashboard.js/components/WriteBlogModal'
 import useAdmin from '../hooks/useAdmin'
 import { AuthContext } from '../context/AuthProvider'
@@ -18,7 +21,7 @@ const DashboardLayout = () => {
                 <Link
                     to='/dashboard'
                     className={`flex items-center gap-2 ${barLocal === 'dashboard' && 'tab-active text-success font-bold'}`}>
-                    <BiGridAlt />My Profile
+                    <RiUserFill />My Profile
                 </Link>
 
                 <Link
@@ -33,24 +36,24 @@ const DashboardLayout = () => {
                         <Link
                             to='/dashboard/bloggers'
                             className={`flex items-center gap-2 ${barLocal === 'bloggers' && 'tab-active text-success font-bold'}`}>
-                            <BiOutline />Bloggers
+                            <FaUserEdit />Bloggers
                         </Link>
                         <Link
                             to='/dashboard/blogger-request'
                             className={`flex items-center gap-2 ${barLocal === 'blogger-request' && 'tab-active text-success font-bold'}`}>
-                            <BiOutline />Blogger Request
+                            <HiUserAdd />Blogger Request
                         </Link>
 
                         <Link
                             to='/dashboard/users'
                             className={`flex items-center gap-2 ${barLocal === 'users' && 'tab-active text-success font-bold'}`}>
-                            <VscWorkspaceTrusted />All Users
+                            <HiUsers />All Users
                         </Link>
 
                         <Link
                             to='/dashboard/categories'
                             className={`flex items-center gap-2 ${barLocal === 'categories' && 'tab-active text-success font-bold'}`}>
-                            <BiOutline />Categories
+                            <MdCategory />Categories
                         </Link>
                     </>
                 }
