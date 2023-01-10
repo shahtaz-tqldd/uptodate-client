@@ -3,9 +3,11 @@ import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { MdRemoveCircle } from 'react-icons/md'
 import Loader from '../../../components/Loader/Loader'
+import useTitle from '../../../hooks/useTitle'
 import DeleteModal from '../components/DeleteModal'
 
 const Bloggers = () => {
+  useTitle('Bloggers')
   const [id, setId] = useState(null)
   const { data: bloggers = [], refetch, isLoading } = useQuery({
     queryKey: ['bloggers'],
@@ -63,7 +65,7 @@ const Bloggers = () => {
                   </div>
                 </td>
                 <th>
-                  <a href='/profile' target="_blank" rel="noreferrer" className="text-info hover:text-primary text-sm">See Profile</a>
+                  <a href={`/blogger/${blogger._id}`} target="_blank" rel="noreferrer" className="text-info hover:text-primary text-sm">See Profile</a>
                 </th>
                 <th>
                   <label htmlFor='delete-modal' onClick={() => setId(blogger._id)} className="cursor-pointer flex items-center text-error text-sm gap-1">Remove<MdRemoveCircle className='mt-1' /></label>

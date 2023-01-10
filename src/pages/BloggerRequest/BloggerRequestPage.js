@@ -30,7 +30,7 @@ const BloggerRequestPage = () => {
                 <div className="gradient w-full h-full flex justify-start items-center">
                     <div className="lg:w-1/2 text-white lg:p-24 p-8">
                         <h1 className="text-[45px] font-bold text-info">Write Blogs in Hash Read</h1>
-                        <p className="py-6 text-xl text-start">Do you love to speak with your words and have amazing writing skill? Write blogs in <span className='font-bold text-warning'>Hash Read</span> and get paid!</p>
+                        <p className="py-6 text-xl text-start">If you love to speak with your words and have an amazing writing skill, write blogs in <span className='font-bold text-warning'>Hash Read</span> and get paid!</p>
                         <ul className='p-4 text-secondary'>
                             {
                                 lists.map((list, i) => <li key={i} className='flex items-center gap-2 py-1'><HiCheckCircle />{list}</li>)

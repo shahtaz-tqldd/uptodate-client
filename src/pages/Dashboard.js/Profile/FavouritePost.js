@@ -6,11 +6,12 @@ import { BsHeartFill } from 'react-icons/bs'
 import { RiPenNibLine } from 'react-icons/ri'
 import { toast } from 'react-hot-toast'
 import useTitle from '../../../hooks/useTitle'
+import Loader from '../../../components/Loader/Loader'
 
 const FavouritePost = () => {
     useTitle('Favourite Post')
     const { user } = useContext(AuthContext)
-    const { data: favourites = [], refetch } = useQuery({
+    const { data: favourites = [], isLoading, refetch } = useQuery({
         queryKey: ['favourites'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/blogs/favourites/${user?.email}`)
@@ -29,6 +30,9 @@ const FavouritePost = () => {
                     refetch()
                 }
             })
+    }
+    if (isLoading) {
+        return <Loader/>
     }
     return (
         <section className='max-w-[1250px] mx-auto mt-24 px-4 min-h-[70vh]'>

@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import JoditEditor from 'jodit-react';
 import React, { useContext, useRef, useState } from 'react';
@@ -10,6 +11,16 @@ const WriteBlogModal = () => {
     const { user, categories } = useContext(AuthContext)
     const navigate = useNavigate()
     const [tagBtn, setTagBtn] = useState(0)
+    
+    const { data: userData=[]} = useQuery({
+        queryKey: ['currentUser'],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/user/${user?.email}`)
+            const data = res.json()
+            return data
+        }
+    })
+
     let tagBtnNum = [1]
     for (let i = 0; i < tagBtn; i++) {
         tagBtnNum.push(1)
@@ -25,10 +36,9 @@ const WriteBlogModal = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const date = format(new Date(), 'PP')
-    const imgHostKey = process.env.REACT_APP_img_bb_key
-    
-    const readTime = Math.ceil((content.length / 2000))
-    console.log(readTime)
+    const imgHostKey = process.env.REACT_APP_img_bb_key 
+    const readTime = Math.ceil((content.length / 1450))
+
     const handleBlogSubmit = data => {
         const { title, category } = data
         let tags = [];
@@ -44,8 +54,10 @@ const WriteBlogModal = () => {
             date,
             readTime,
             author: user?.displayName,
+            authorId: userData?._id,
             authorEmail: user?.email,
             authorImg: user?.photoURL,
+            authorSpeciality: userData?.speciality
         }
         const formData = new FormData()
         formData.append('image', image)

@@ -4,9 +4,11 @@ import { toast } from 'react-hot-toast'
 import { MdRemoveCircle } from 'react-icons/md'
 import Loader from '../../../components/Loader/Loader'
 import { AuthContext } from '../../../context/AuthProvider'
+import useTitle from '../../../hooks/useTitle'
 import DeleteModal from '../components/DeleteModal'
 
 const BlogsDashboard = () => {
+  useTitle('Blogs')
   const {user} = useContext(AuthContext)
   const [id, setId] = useState(null)
   const { data: blogs = [], refetch, isLoading } = useQuery({

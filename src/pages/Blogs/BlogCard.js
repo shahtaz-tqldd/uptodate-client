@@ -3,15 +3,15 @@ import { MdDateRange } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 
 const BlogCard = ({ blog }) => {
-    const { title, readTime, date, author, authorImg, img, _id, tags, category } = blog
+    const { title, readTime, date, author, authorSpeciality, authorImg, img, _id, tags, category } = blog
 
     return (
-        <Link to={`/blogs/${_id}`} className='hover:bg-secondary hover:shadow-lg duration-300 transition rounded-lg relative'>
+        <Link to={`/blogs/${_id}`} className='hover:bg-white hover:shadow-lg duration-300 transition rounded-lg relative'>
             <img src={img} alt="img" className='w-full h-52 object-cover rounded-t-lg' />
             <div className='p-3 flex flex-col justify-between h-48'>
                 <div>
                     {/* title of the blog */}
-                    <h2 className='text-xl font-bold'>{title}</h2>
+                    <h2 className='text-xl font-bold text-[#333]'>{title}</h2>
 
                 </div>
                 {/* author */}
@@ -21,12 +21,15 @@ const BlogCard = ({ blog }) => {
                             <img src={authorImg} alt="" />
                         </div>
                     </div>
-                    <h2 className='text-sm pb-2'>{author}</h2>
+                    <div className='flex flex-col'>
+                        <h2 className='text-sm font-bold'>{author}</h2>
+                        <span className='text-xs'>{authorSpeciality}</span>
+                    </div>
                 </div>
                 <div>
                     {/* tags */}
                     <div className='flex gap-2 text-xs '>
-                        {tags.map(tag => <span className='px-3 py-1 bg-accent rounded'>{tag}</span>)}
+                        {tags.map(tag => <span className='px-3 py-1 bg-secondary rounded'>{tag}</span>)}
                     </div>
                     <p className='absolute top-3 right-0 bg-success opacity-90 px-5 py-[6px] rounded-l-lg shadow-lg'>{category}</p>
                     <div className='flex items-center justify-between mt-3'>
@@ -34,7 +37,7 @@ const BlogCard = ({ blog }) => {
                             <MdDateRange />
                             <small>{date}</small>
                         </div>
-                        <small className='text-pink-500'>{ readTime} {readTime>1 ? 'mins':'min'} read</small>
+                        <small className='text-pink-500'>{readTime} {readTime > 1 ? 'mins' : 'min'} read</small>
                     </div>
                 </div>
             </div>

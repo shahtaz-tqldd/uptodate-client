@@ -13,7 +13,7 @@ const BlogDetails = () => {
     const data = useLoaderData()
     const { user } = useContext(AuthContext)
     const [isBlogger] = useBlogger(user?.email)
-    const { title, body, img, author, authorImg, date, tags, _id, readTime } = data
+    const { title, body, img, author, authorImg, authorId, authorSpeciality, date, tags, _id, readTime } = data
     useTitle(title)
 
     const copyLink = window?.location?.href
@@ -79,6 +79,18 @@ const BlogDetails = () => {
         else if (index === 1) {
             return 'bg-red-300'
         }
+        else if (index === 2) {
+            return 'bg-amber-300'
+        }
+        else if (index === 3) {
+            return 'bg-pink-300'
+        }
+        else if (index === 4) {
+            return 'bg-orange-300'
+        }
+        else if (index === 5) {
+            return 'bg-slate-300'
+        }
         else {
             return 'bg-pink-300'
         }
@@ -98,8 +110,8 @@ const BlogDetails = () => {
                     </div>
                 </div>
                 <div className='flex flex-col'>
-                    <h2 className='text-lg font-bold'>{author}</h2>
-                    <small>Tech Blogger</small>
+                    <h2 className='text-lg font-bold text-blue-400 hover:text-info transition duration-300'><Link to={`/blogger/${authorId}`}>{author}</Link></h2>
+                    <small>{authorSpeciality}</small>
                 </div>
             </div>
 
@@ -117,8 +129,8 @@ const BlogDetails = () => {
                 </div>
                 <div className='flex items-center gap-6'>
                     <button onClick={handleFavourite} className='text-neutral tooltip tooltip-error hover:scale-110 hover:text-error transition duration-300' data-tip="Add this post to favourite"><BsHeartFill /></button>
-                    <button onClick={handleSave} className='text-neutral tooltip tooltip-info hover:scale-110 hover:text-primary transition duration-300' data-tip="Save this post for later"><BsFillBookmarkFill /></button>
-                    <button onClick={() => getLink(copyLink)} className='text-neutral tooltip tooltip-success hover:scale-110 hover:text-blue-500 transition duration-300' data-tip="Get link of this post"><BsLink45Deg className='text-2xl' /></button>
+                    <button onClick={handleSave} className='text-neutral tooltip tooltip-info hover:scale-110 hover:text-info transition duration-300' data-tip="Save this post for later"><BsFillBookmarkFill /></button>
+                    <button onClick={() => getLink(copyLink)} className='text-neutral tooltip tooltip-success hover:scale-110 hover:text-success transition duration-300' data-tip="Get link of this post"><BsLink45Deg className='text-2xl' /></button>
                 </div>
             </div>
 
@@ -128,11 +140,12 @@ const BlogDetails = () => {
                     tags?.map((tag, index) => <span className={`${bgGet(index)} px-2 py-1 rounded`} key={index}>{tag}</span>)
                 }
             </div>
+            
             {/* blog body */}
-            <div className='mt-2 text-[16px]' dangerouslySetInnerHTML={{ __html: body }} />
+            <div className='mt-10' dangerouslySetInnerHTML={{ __html: body }} />
 
             {/* write blogs */}
-            {!isBlogger && <div className='mt-8'><Link to='/blogger-request' className='flex items-center gap-2 text-info text-lg'><IoIosPaper />Want to Write Blog?</Link></div>}
+            {!isBlogger && <div className='mt-8'><Link to='/blogger-request' className='flex items-center gap-2 text-blue-500 text-lg'><IoIosPaper />Hey! Do you want to write Blog and get paid?</Link></div>}
 
             {/* comments */}
             <Comments blogId={_id} />

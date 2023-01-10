@@ -3,11 +3,13 @@ import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { MdRemoveCircle, MdVerified } from 'react-icons/md'
 import Loader from '../../../components/Loader/Loader'
+import useTitle from '../../../hooks/useTitle'
 import BloggerContentModal from '../components/BloggerContentModal'
 import ConfirmModal from '../components/ConfirmModal'
 import DeleteModal from '../components/DeleteModal'
 
 const BloggerRequest = () => {
+    useTitle('Blogger Request')
     const [confirm, setConfirm] = useState(null)
     const [id, setId] = useState(null)
     const [data, setData] = useState(null)
@@ -31,11 +33,16 @@ const BloggerRequest = () => {
             })
     }
     const handleConfirm = (email, id) => {
+        console.log(confirm?.speciality)
+        const bloggerSpeciality = {
+            speciality: confirm?.speciality
+        }
         fetch(`http://localhost:5000/blogger-request/${email}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
-            }
+            },
+            body: JSON.stringify(bloggerSpeciality)
         })
             .then(res => res.json())
             .then(() => {
@@ -75,7 +82,7 @@ const BloggerRequest = () => {
                                         </div>
                                         <div>
                                             <div className="font-bold">{blogger.author}</div>
-                                            <div className="text-sm opacity-50">{ blogger.authorEmail}</div>
+                                            <div className="text-sm opacity-50">{ blogger.speciality}</div>
                                         </div>
                                     </div>
                                 </td>
@@ -83,7 +90,7 @@ const BloggerRequest = () => {
                                     <label htmlFor='blog-content-modal' onClick={() => setData({ body: blogger.body, title: blogger.title })} className="cursor-pointer flex items-center text-primary text-sm gap-1">Content</label>
                                 </th>
                                 <th>
-                                    <label htmlFor='confirm-modal' onClick={() => setConfirm({email:blogger.authorEmail, id: blogger._id})} className="cursor-pointer flex items-center text-info text-sm gap-1"><MdVerified className='mt-[2px]' />Approve</label>
+                                    <label htmlFor='confirm-modal' onClick={() => setConfirm({email:blogger.authorEmail, id: blogger._id, speciality: blogger.speciality })} className="cursor-pointer flex items-center text-info text-sm gap-1"><MdVerified className='mt-[2px]' />Approve</label>
                                 </th>
                                 <th>
                                     <label htmlFor='delete-modal' onClick={() => setId(blogger._id)} className="cursor-pointer flex items-center text-error text-sm gap-1">Remove<MdRemoveCircle className='mt-1' /></label>

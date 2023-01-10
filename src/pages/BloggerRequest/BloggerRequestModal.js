@@ -3,9 +3,19 @@ import JoditEditor from 'jodit-react';
 import React, { useContext, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { HiLightBulb } from 'react-icons/hi';
+import { RiAlertFill } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+
+const bloggers = [
+    'Blogger',
+    'Tech Blogger',
+    'Sport Blogger',
+    'Movie Blogger',
+    'Food Blogger',
+    'Story Teller',
+]
+
 const BloggerRequestModal = () => {
     const { user, categories } = useContext(AuthContext)
     const navigate = useNavigate()
@@ -15,19 +25,25 @@ const BloggerRequestModal = () => {
             categories?.map(c => <option key={c._id}>{c.category}</option>)
         }
     </>
+    const bloggerOptions = <>
+        {
+            bloggers?.map((b, i) => <option key={i}>{b}</option>)
+        }
+    </>
     const [content, setContent] = useState('')
 
     const editor = useRef(null)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const date = format(new Date(), 'PP')
     const handleBlogSubmit = data => {
-        const { title, category, about } = data
+        const { title, category, about, speciality } = data
         const blogInfo = {
             title,
             category,
             body: content,
             date,
             about,
+            speciality,
             author: user.displayName,
             authorEmail: user.email,
             authorImg: user.photoURL,
@@ -85,12 +101,20 @@ const BloggerRequestModal = () => {
 
                         {/* about you */}
                         <div className='mt-8'>
-                            <label className='text-neutral text-lg font-bold'>Tell us about yourself</label>
-                            <textarea {...register("about", { required: "This field can not be empty" })} placeholder='Who are you, what makes you a good writter, why do you write...' className='mt-1 w-full h-40 p-2 rounded' />
+                            <label className='text-neutral text-lg font-bold '>Tell us about yourself</label>
+                            <textarea {...register("about", { required: "This field can not be empty" })} placeholder='Who are you, what makes you a good writter, why do you write...' className='mt-2 w-full h-40 p-2 rounded' />
                             {errors.about && <span className='text-error'>{errors.about.message}</span>}
                         </div>
+                        {/* your speciality */}
+                        <div className='w-1/4 flex flex-col mt-5'>
+                                <label className='text-neutral text-lg font-bold mb-2'>Select Your Speciality</label>
+                                <select {...register("speciality", { required: "This field can not be empty" })} type="text" className="input input-bordered">
+                                    {bloggerOptions}
+                                </select>
+                                {errors.speciality && <span className='text-error'>{errors.speciality.message}</span>}
+                            </div>
 
-                        <a href='/payment-condition' target='_blank' rel="noreferrer" className='text-error font-bold my-3 flex items-center gap-2'><HiLightBulb/> Terms and Condition of Payment</a>
+                        <a href='/payment-condition' target='_blank' rel="noreferrer" className='text-red-400 hover:text-red-500 font-bold my-5 flex items-center gap-2'><RiAlertFill/> Terms and Conditions of Payment</a>
 
                         <div className='flex justify-center mt-10'>
                             <input type="submit" value="submit" className="btn btn-wide btn-primary text-white" />

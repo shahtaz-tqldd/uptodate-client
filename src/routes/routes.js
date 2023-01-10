@@ -12,6 +12,7 @@ import BlogsDashboard from "../pages/Dashboard.js/BlogsDashboard/BlogsDashboard"
 import CategoriesPage from "../pages/Dashboard.js/CatogoriesPage/CategoriesPage";
 import Dashboard from "../pages/Dashboard.js/Dashboard";
 import FavouritePost from "../pages/Dashboard.js/Profile/FavouritePost";
+import ProfilePage from "../pages/Dashboard.js/Profile/ProfilePage";
 import SavedPost from "../pages/Dashboard.js/Profile/SavedPost";
 import Users from "../pages/Dashboard.js/Users/Users";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
@@ -34,6 +35,11 @@ export const routes = createBrowserRouter([
                 path: '/blogs/:id',
                 element: <BlogDetails />,
                 loader: async({params})=> await fetch(`http://localhost:5000/blogs/${params.id}`)
+            },
+            {
+                path: '/blogger/:id',
+                element: <ProfilePage />,
+                loader: async({params})=> await fetch(`http://localhost:5000/blogger/${params.id}`)
             },
             {
                 path: '/blogger-request',

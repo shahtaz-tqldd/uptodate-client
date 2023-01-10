@@ -24,10 +24,10 @@ const Blogs = () => {
     return (
         <section>
             <div className='hidden md:flex lg:flex flex-wrap gap-6 mb-8 text-white sticky top-16 bg-base-100 z-10 py-3'>
-                <button onClick={() => setCategory('All')} className={`px-4 py-1 rounded-full hover:bg-error ${'All' === category ? 'bg-error' : 'bg-neutral'}`}>All</button>
+                <button onClick={() => setCategory('All')} className={`px-4 py-1 text-sm rounded hover:bg-blue-500 ${'All' === category ? 'bg-blue-500' : 'bg-blue-300'}`}>All</button>
 
                 {categories?.map((c, i) => <button onClick={() => setCategory(c.category)}
-                    className={`px-4 py-1 rounded-full hover:bg-error ${c.category === category ? 'bg-error' : 'bg-neutral'}`}
+                    className={`px-4 py-1 rounded text-sm hover:bg-blue-500 ${c.category === category ? 'bg-blue-500' : 'bg-blue-300'}`}
                     key={i}>
                     {c.category}
                 </button>)}

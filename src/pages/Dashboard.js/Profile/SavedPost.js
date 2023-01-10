@@ -6,11 +6,12 @@ import { BsFillBookmarkFill } from 'react-icons/bs'
 import { RiPenNibLine } from 'react-icons/ri'
 import { toast } from 'react-hot-toast'
 import useTitle from '../../../hooks/useTitle'
+import Loader from '../../../components/Loader/Loader'
 
 const SavedPost = () => {
     useTitle('Saved Post')
     const { user } = useContext(AuthContext)
-    const { data: saved = [], refetch } = useQuery({
+    const { data: saved = [], isLoading, refetch } = useQuery({
         queryKey: ['saved'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/blogs/saved/${user?.email}`)
@@ -30,9 +31,12 @@ const SavedPost = () => {
                 }
             })
     }
+    if (isLoading) {
+        return <Loader/>
+    }
     return (
         <section className='max-w-[1250px] mx-auto mt-24 px-4 min-h-[70vh]'>
-            <h2 className='text-3xl font-bold'>{user?.displayName}'s saved post</h2>
+            <h2 className='text-3xl font-bold'>Your saved post</h2>
             <div className='grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-6 mt-12'>
                 {
                     saved.length ?
