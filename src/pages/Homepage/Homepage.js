@@ -9,7 +9,6 @@ const Homepage = () => {
         <div>
             <SearchBar />
             <section className='max-w-[1250px] mx-auto px-4'>
-                {/* <Categories setCategory={setCategory} category={category} /> */}
                 <Blogs />
             </section>
         </div>

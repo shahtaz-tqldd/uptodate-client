@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
+import Loader from '../components/Loader/Loader'
 import { AuthContext } from '../context/AuthProvider'
 import useAdmin from '../hooks/useAdmin'
 import useBlogger from '../hooks/useBlogger'
@@ -10,7 +11,7 @@ const AdminRoute = ({ children }) => {
     const [isBlogger, isBloggerLoading] = useBlogger(user?.email)
     const location = useLocation();
     if (loading || (isAdminLoading || isBloggerLoading) ) {
-        return <h2>Loading...</h2>
+        return <Loader />
     }
     if (user && (isAdmin || isBlogger)) {
         return children;

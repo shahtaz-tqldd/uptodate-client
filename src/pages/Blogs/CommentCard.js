@@ -14,7 +14,7 @@ const CommentCard = ({ comment, refetch }) => {
 
     const { comment: commentBody, commenter, commenterPhoto, commenterEmail, date, time, _id } = comment
     const handleCommentDelete = (id) => {
-        fetch(`https://dev-blog-server.vercel.app/blogs/comments/${id}`, {
+        fetch(`http://localhost:5000/blogs/comments/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -33,7 +33,7 @@ const CommentCard = ({ comment, refetch }) => {
             editedDate,
             editedTime,
         }
-        fetch(`https://dev-blog-server.vercel.app/blogs/comments/${_id}`, {
+        fetch(`http://localhost:5000/blogs/comments/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'

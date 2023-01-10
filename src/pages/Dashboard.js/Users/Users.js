@@ -1,20 +1,20 @@
 import { useQuery } from '@tanstack/react-query'
 import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { MdRemoveCircle } from 'react-icons/md'
+import Loader from '../../../components/Loader/Loader'
 import DeleteModal from '../components/DeleteModal'
 const Users = () => {
   const [id, setId] = useState(null)
-  const { data: users = [], refetch } = useQuery({
+  const { data: users = [], refetch, isLoading } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
-      const res = await fetch('https://dev-blog-server.vercel.app/users')
+      const res = await fetch('http://localhost:5000/users')
       const data = await res.json()
       return data;
     }
   })
   const handleDelete = id => {
-    fetch(`https://dev-blog-server.vercel.app/users/${id}`, {
+    fetch(`http://localhost:5000/users/${id}`, {
       method: 'DELETE'
     })
       .then(res => res.json())
@@ -24,8 +24,14 @@ const Users = () => {
         setId(null)
       })
   }
+  if (isLoading) {
+    return <Loader />
+  }
+
+
   return (
     <div className="ml-10 w-[150%]">
+
       <h2 className='font-bold text-2xl text-primary mt-6 mb-4 uppercase'>All Users</h2>
       <table className="table w-full">
         <thead>
@@ -53,11 +59,17 @@ const Users = () => {
               </div>
             </td>
             <th>
-              <span className='text-sm uppercase text-info'>{user.role ==='blogger' && 'Blogger'}</span>
+              <span className='text-sm uppercase text-info'>{user.role === 'blogger' && 'Blogger'}</span>
             </th>
             <th>
               <label htmlFor='delete-modal' onClick={() => setId(user._id)}
-                className="cursor-pointer flex items-center text-error text-sm gap-1">Remove<MdRemoveCircle className='mt-1' />
+                className="cursor-pointer pl-4">
+                <lord-icon
+                  src="https://cdn.lordicon.com/jmkrnisz.json"
+                  colors="primary:#ee6d66"
+                  trigger="hover"
+                  style={{ width: "25px", height: "25px" }}>
+                </lord-icon>
               </label>
             </th>
           </tr>

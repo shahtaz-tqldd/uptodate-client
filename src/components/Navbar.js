@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { BsFillJournalBookmarkFill, BsFillBookmarkFill, BsFillHeartFill } from 'react-icons/bs'
 import { IoIosArrowDropdownCircle } from 'react-icons/io'
-import { MdDashboardCustomize } from 'react-icons/md'
+import { MdDashboardCustomize, MdPersonAddAlt1 } from 'react-icons/md'
 import { CgLogOut } from 'react-icons/cg'
 
 import { AuthContext } from '../context/AuthProvider'
@@ -10,11 +10,14 @@ import { toast } from 'react-hot-toast'
 import { BiSearch } from 'react-icons/bi'
 import useAdmin from '../hooks/useAdmin'
 import useBlogger from '../hooks/useBlogger'
+import useAccepted from '../hooks/useAccepted'
 const Navbar = () => {
     const { categories } = useContext(AuthContext)
     const { user, logout, setSearch } = useContext(AuthContext)
     const [isAdmin] = useAdmin(user?.email)
     const [isBlogger] = useBlogger(user?.email)
+    const [isAccepted] = useAccepted(user?.email)
+
     const navigate = useNavigate()
     const menuItems = <>
         {
@@ -84,6 +87,12 @@ const Navbar = () => {
                                         (isAdmin || isBlogger) &&
                                         <>
                                             <li><Link to='/dashboard' className='flex items-center gap-2 font-bold'><MdDashboardCustomize/>Dashboard</Link></li>
+                                        </>
+                                    }
+                                    {
+                                        (isAccepted && !isBlogger) &&
+                                        <>
+                                            <li><Link to='/payment' className='flex items-center gap-2 font-bold'><MdPersonAddAlt1/>Register</Link></li>
                                         </>
                                     }
                                     <li><button onClick={handleLogout} className="bg-error font-bold mt-4 w-full text-white hover:bg-[#E97777] flex items-center gap-[5px]"><CgLogOut className='text-xl pt-[2px]'/> Logout</button></li>

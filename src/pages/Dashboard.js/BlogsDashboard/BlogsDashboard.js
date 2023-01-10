@@ -2,22 +2,23 @@ import { useQuery } from '@tanstack/react-query'
 import React, { useContext, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { MdRemoveCircle } from 'react-icons/md'
+import Loader from '../../../components/Loader/Loader'
 import { AuthContext } from '../../../context/AuthProvider'
 import DeleteModal from '../components/DeleteModal'
 
 const BlogsDashboard = () => {
   const {user} = useContext(AuthContext)
   const [id, setId] = useState(null)
-  const { data: blogs = [], refetch } = useQuery({
+  const { data: blogs = [], refetch, isLoading } = useQuery({
     queryKey: ['blogs'],
     queryFn: async () => {
-      const res = await fetch(`https://dev-blog-server.vercel.app/dashboard/blogs/${user?.email}`)
+      const res = await fetch(`http://localhost:5000/dashboard/blogs/${user?.email}`)
       const data = await res.json()
       return data;
     }
   })
   const handleDelete = id => {
-    fetch(`https://dev-blog-server.vercel.app/blogs/${id}`, {
+    fetch(`http://localhost:5000/blogs/${id}`, {
       method: 'DELETE',
     })
       .then(res => res.json())
@@ -26,6 +27,9 @@ const BlogsDashboard = () => {
         refetch()
         setId(null)
       })
+  }
+  if (isLoading) {
+    return <Loader />
   }
   return (
     <div className="ml-10 w-[120%]">

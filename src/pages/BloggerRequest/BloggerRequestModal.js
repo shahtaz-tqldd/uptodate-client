@@ -33,7 +33,7 @@ const BloggerRequestModal = () => {
             authorImg: user.photoURL,
         }
 
-        fetch('https://dev-blog-server.vercel.app/blogger-request', {
+        fetch('http://localhost:5000/blogger-request', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

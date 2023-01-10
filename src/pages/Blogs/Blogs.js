@@ -1,5 +1,6 @@
 // import { useQuery } from '@tanstack/react-query'
 import React, { useContext, useEffect, useState } from 'react'
+import ComponentsLoader from '../../components/Loader/ComponentsLoader'
 import { AuthContext } from '../../context/AuthProvider'
 import BlogCard from './BlogCard'
 
@@ -7,14 +8,19 @@ const Blogs = () => {
     const { categories, search } = useContext(AuthContext)
     const [blogs, setBlogs] = useState([])
     const [category, setCategory] = useState('All')
+    const [loading, setLoading] = useState(true)
     useEffect(() => {
         fetch(`http://localhost:5000/blogs?category=${category}&search=${search}`)
             .then(res => res.json())
             .then(data => {
                 setBlogs(data);
+                setLoading(false)
             })
-    }, [category, search])
-
+    }, [category, search]
+    )
+    if (loading) {
+        return <ComponentsLoader />
+    }
     return (
         <section>
             <div className='hidden md:flex lg:flex flex-wrap gap-6 mb-8 text-white sticky top-16 bg-base-100 z-10 py-3'>

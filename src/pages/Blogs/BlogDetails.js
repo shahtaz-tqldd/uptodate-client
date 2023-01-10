@@ -15,7 +15,7 @@ const BlogDetails = () => {
     const [isBlogger] = useBlogger(user?.email)
     const { title, body, img, author, authorImg, date, tags, _id, readTime } = data
     useTitle(title)
-    // const location = useLocation()
+
     const copyLink = window?.location?.href
 
     const handleSave = () => {
@@ -72,6 +72,18 @@ const BlogDetails = () => {
         toast.success("Link coppied!")
     }
 
+    const bgGet = (index) => {
+        if (index === 0) {
+            return 'bg-blue-300'
+        }
+        else if (index === 1) {
+            return 'bg-red-300'
+        }
+        else {
+            return 'bg-pink-300'
+        }
+    }
+
     return (
         <section className='max-w-[980px] mx-auto pt-4 px-4'>
             <Link to='/' className='text-primary text-4xl -ml-16 mt-2 fixed'><BsArrowLeftCircleFill /></Link>
@@ -106,14 +118,14 @@ const BlogDetails = () => {
                 <div className='flex items-center gap-6'>
                     <button onClick={handleFavourite} className='text-neutral tooltip tooltip-error hover:scale-110 hover:text-error transition duration-300' data-tip="Add this post to favourite"><BsHeartFill /></button>
                     <button onClick={handleSave} className='text-neutral tooltip tooltip-info hover:scale-110 hover:text-primary transition duration-300' data-tip="Save this post for later"><BsFillBookmarkFill /></button>
-                    <button onClick={()=>getLink(copyLink)} className='text-neutral tooltip tooltip-success hover:scale-110 hover:text-blue-500 transition duration-300' data-tip="Get link of this post"><BsLink45Deg className='text-2xl' /></button>
+                    <button onClick={() => getLink(copyLink)} className='text-neutral tooltip tooltip-success hover:scale-110 hover:text-blue-500 transition duration-300' data-tip="Get link of this post"><BsLink45Deg className='text-2xl' /></button>
                 </div>
             </div>
 
             {/* blog topics */}
             <div className='mt-5 flex gap-2 text-xs text-dark'>
                 {
-                    tags?.map((tag, i) => <span className='bg-red-300 px-2 py-1 rounded' key={i}>{tag}</span>)
+                    tags?.map((tag, index) => <span className={`${bgGet(index)} px-2 py-1 rounded`} key={index}>{tag}</span>)
                 }
             </div>
             {/* blog body */}

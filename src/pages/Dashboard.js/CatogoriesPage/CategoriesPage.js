@@ -24,7 +24,7 @@ const CategoriesPage = () => {
             addedBy: user?.email
         }
         console.log(categoryInfo)
-        fetch('https://dev-blog-server.vercel.app/blogs/categories', {
+        fetch('http://localhost:5000/blogs/categories', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -40,7 +40,7 @@ const CategoriesPage = () => {
     }
 
     const handleRemoveCategory = (id) => {
-        fetch(`https://dev-blog-server.vercel.app/blogs/categories/${id}`, {
+        fetch(`http://localhost:5000/blogs/categories/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

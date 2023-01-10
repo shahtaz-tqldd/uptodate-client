@@ -17,7 +17,7 @@ const Comments = ({ blogId }) => {
     const { data: comments = [], refetch } = useQuery({
         queryKey: ['comments'],
         queryFn: async () => {
-            const res = await fetch(`https://dev-blog-server.vercel.app/blogs/comments/${blogId}`)
+            const res = await fetch(`http://localhost:5000/blogs/comments/${blogId}`)
             const data = await res.json()
             return data
         }
@@ -36,7 +36,7 @@ const Comments = ({ blogId }) => {
             date,
             time
         }
-        fetch(`https://dev-blog-server.vercel.app/blogs/comments`, {
+        fetch(`http://localhost:5000/blogs/comments`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

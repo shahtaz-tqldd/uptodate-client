@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { MdRemoveCircle, MdVerified } from 'react-icons/md'
+import Loader from '../../../components/Loader/Loader'
 import BloggerContentModal from '../components/BloggerContentModal'
 import ConfirmModal from '../components/ConfirmModal'
 import DeleteModal from '../components/DeleteModal'
@@ -10,16 +11,16 @@ const BloggerRequest = () => {
     const [confirm, setConfirm] = useState(null)
     const [id, setId] = useState(null)
     const [data, setData] = useState(null)
-    const { data: bloggerReq = [], refetch } = useQuery({
+    const { data: bloggerReq = [], refetch, isLoading } = useQuery({
         queryKey: ['bloggerReq'],
         queryFn: async () => {
-            const res = await fetch('https://dev-blog-server.vercel.app/blogger-request')
+            const res = await fetch('http://localhost:5000/blogger-request')
             const data = await res.json()
             return data;
         }
     })
     const handleDelete = id => {
-        fetch(`https://dev-blog-server.vercel.app/blogger-request/${id}`, {
+        fetch(`http://localhost:5000/blogger-request/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -30,7 +31,7 @@ const BloggerRequest = () => {
             })
     }
     const handleConfirm = (email, id) => {
-        fetch(`https://dev-blog-server.vercel.app/blogger-request/${email}`, {
+        fetch(`http://localhost:5000/blogger-request/${email}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
@@ -43,6 +44,9 @@ const BloggerRequest = () => {
                 setConfirm(null)
                 handleDelete(id)
             })
+    }
+    if (isLoading) {
+        return <Loader />
     }
     return (
         <div className="ml-10 w-[150%]">

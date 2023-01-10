@@ -4,6 +4,8 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Main from "../layouts/Main";
 import BloggerRequestPage from "../pages/BloggerRequest/BloggerRequestPage";
 import BlogDetails from "../pages/Blogs/BlogDetails";
+import Payment from "../pages/CheckOut/Payment";
+import PaymentSuccess from "../pages/CheckOut/PaymentSuccess";
 import BloggerRequest from "../pages/Dashboard.js/Bloggers/BloggerRequest";
 import Bloggers from "../pages/Dashboard.js/Bloggers/Bloggers";
 import BlogsDashboard from "../pages/Dashboard.js/BlogsDashboard/BlogsDashboard";
@@ -31,7 +33,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/blogs/:id',
                 element: <BlogDetails />,
-                loader: async({params})=> await fetch(`https://dev-blog-server.vercel.app/blogs/${params.id}`)
+                loader: async({params})=> await fetch(`http://localhost:5000/blogs/${params.id}`)
             },
             {
                 path: '/blogger-request',
@@ -40,6 +42,14 @@ export const routes = createBrowserRouter([
             {
                 path: '/payment-condition',
                 element: <PaymentCondition />
+            },
+            {
+                path: '/payment',
+                element: <PrivateRoute><Payment/></PrivateRoute>
+            },
+            {
+                path: '/payment/success',
+                element: <PrivateRoute><PaymentSuccess/></PrivateRoute>
             },
             {
                 path: '/dashboard/saved',

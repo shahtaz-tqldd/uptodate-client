@@ -59,7 +59,7 @@ const WriteBlogModal = () => {
                     const img = imgData.data.url;
                     const blogInfoWithImg = { ...blogInfo, img }
 
-                    fetch('https://dev-blog-server.vercel.app/blogs', {
+                    fetch('http://localhost:5000/blogs', {
                         method: 'POST',
                         headers: {
                             'Content-type': 'application/json'
