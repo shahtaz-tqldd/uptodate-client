@@ -16,13 +16,13 @@ const BloggerRequest = () => {
     const { data: bloggerReq = [], refetch, isLoading } = useQuery({
         queryKey: ['bloggerReq'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/blogger-request')
+            const res = await fetch('https://dev-blog-server.vercel.app/blogger-request')
             const data = await res.json()
             return data;
         }
     })
     const handleDelete = id => {
-        fetch(`http://localhost:5000/blogger-request/${id}`, {
+        fetch(`https://dev-blog-server.vercel.app/blogger-request/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -37,7 +37,7 @@ const BloggerRequest = () => {
         const bloggerSpeciality = {
             speciality: confirm?.speciality
         }
-        fetch(`http://localhost:5000/blogger-request/${email}`, {
+        fetch(`https://dev-blog-server.vercel.app/blogger-request/${email}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
@@ -57,7 +57,7 @@ const BloggerRequest = () => {
     }
     return (
         <div className="ml-10 w-[150%]">
-            <h2 className='font-bold text-2xl text-primary mt-6 mb-4 uppercase'>Blogger Request</h2>
+            <h2 className='font-bold text-2xl mt-6 mb-4 uppercase'>Blogger Request</h2>
             {
                 bloggerReq.length ?
                     <table className="table w-full">

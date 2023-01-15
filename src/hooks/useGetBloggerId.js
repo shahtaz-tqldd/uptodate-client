@@ -5,7 +5,7 @@ const useGetBloggerId = (email) => {
     const [bloggerIdLoading, setBloggerIdLoading] = useState(true)
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/${email}`)
+            fetch(`https://dev-blog-server.vercel.app/users/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     setBloggerId(data.bloggerId)

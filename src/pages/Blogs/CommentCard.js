@@ -14,7 +14,7 @@ const CommentCard = ({ comment, refetch }) => {
 
     const { comment: commentBody, commenter, commenterPhoto, commenterEmail, date, time, _id } = comment
     const handleCommentDelete = (id) => {
-        fetch(`http://localhost:5000/blogs/comments/${id}`, {
+        fetch(`https://dev-blog-server.vercel.app/blogs/comments/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -33,7 +33,7 @@ const CommentCard = ({ comment, refetch }) => {
             editedDate,
             editedTime,
         }
-        fetch(`http://localhost:5000/blogs/comments/${_id}`, {
+        fetch(`https://dev-blog-server.vercel.app/blogs/comments/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
@@ -59,7 +59,7 @@ const CommentCard = ({ comment, refetch }) => {
                     </div>
 
                     <div>
-                        <h3 className='font-bold opacity-70'>{commenter}</h3>
+                        <h3 className='font-bold'>{commenter}</h3>
                         <div className='flex gap-6'>
                             <div className='flex gap-3 opacity-50 text-xs'><span>{date}</span> <span>{time}</span></div>
                             {

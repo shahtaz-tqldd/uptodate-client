@@ -8,13 +8,13 @@ const Users = () => {
   const { data: users = [], refetch, isLoading } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/users')
+      const res = await fetch('https://dev-blog-server.vercel.app/users')
       const data = await res.json()
       return data;
     }
   })
   const handleDelete = id => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://dev-blog-server.vercel.app/users/${id}`, {
       method: 'DELETE'
     })
       .then(res => res.json())
@@ -32,7 +32,7 @@ const Users = () => {
   return (
     <div className="ml-10 w-[150%]">
 
-      <h2 className='font-bold text-2xl text-primary mt-6 mb-4 uppercase'>All Users</h2>
+      <h2 className='font-bold text-2xl text-base-content mt-6 mb-4 uppercase'>All Users</h2>
       <table className="table w-full">
         <thead>
           <tr>

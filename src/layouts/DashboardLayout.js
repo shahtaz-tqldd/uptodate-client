@@ -20,13 +20,13 @@ const DashboardLayout = () => {
             <div className="lg:w-1/5 flex flex-col gap-3 text-[16px] bg-secondary px-10 pt-10 pb-16 fixed top-16">
                 <Link
                     to='/dashboard'
-                    className={`flex items-center gap-2 ${barLocal === 'dashboard' && 'tab-active text-success font-bold'}`}>
+                    className={`flex items-center gap-2 ${barLocal === 'dashboard' && 'tab-active text-blue-400 font-bold'}`}>
                     <RiUserFill />My Profile
                 </Link>
 
                 <Link
                     to='/dashboard/blogs'
-                    className={`flex items-center gap-2 ${barLocal === 'blogs' && 'tab-active text-success font-bold'}`}>
+                    className={`flex items-center gap-2 ${barLocal === 'blogs' && 'tab-active text-blue-400 font-bold'}`}>
                     <BiNews />Blogs
                 </Link>
 
@@ -35,30 +35,30 @@ const DashboardLayout = () => {
                     <>
                         <Link
                             to='/dashboard/bloggers'
-                            className={`flex items-center gap-2 ${barLocal === 'bloggers' && 'tab-active text-success font-bold'}`}>
+                            className={`flex items-center gap-2 ${barLocal === 'bloggers' && 'tab-active text-blue-400 font-bold'}`}>
                             <FaUserEdit />Bloggers
                         </Link>
                         <Link
                             to='/dashboard/blogger-request'
-                            className={`flex items-center gap-2 ${barLocal === 'blogger-request' && 'tab-active text-success font-bold'}`}>
+                            className={`flex items-center gap-2 ${barLocal === 'blogger-request' && 'tab-active text-blue-400 font-bold'}`}>
                             <HiUserAdd />Blogger Request
                         </Link>
 
                         <Link
                             to='/dashboard/users'
-                            className={`flex items-center gap-2 ${barLocal === 'users' && 'tab-active text-success font-bold'}`}>
+                            className={`flex items-center gap-2 ${barLocal === 'users' && 'tab-active text-blue-400 font-bold'}`}>
                             <HiUsers />All Users
                         </Link>
 
                         <Link
                             to='/dashboard/categories'
-                            className={`flex items-center gap-2 ${barLocal === 'categories' && 'tab-active text-success font-bold'}`}>
+                            className={`flex items-center gap-2 ${barLocal === 'categories' && 'tab-active text-blue-400 font-bold'}`}>
                             <MdCategory />Categories
                         </Link>
                     </>
                 }
             </div>
-            <div className='ml-[20%] min-h-[60vh]'>
+            <div className='ml-[20%] mb-16 min-h-[60vh]'>
                 <label htmlFor="blog-write-modal" className='btn btn-sm btn-error text-white rounded px-12 absolute right-16 top-20'>Write +</label>
                 <WriteBlogModal />
                 <Outlet />

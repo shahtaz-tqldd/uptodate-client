@@ -12,14 +12,14 @@ const Dashboard = () => {
   const { data: userData=[]} = useQuery({
     queryKey: ['currentUser'],
     queryFn: async () => {
-        const res = await fetch(`http://localhost:5000/user/${user?.email}`)
+        const res = await fetch(`https://dev-blog-server.vercel.app/user/${user?.email}`)
         const data = res.json()
         return data
     }
 })
   return (
     <div className='flex ml-10 mt-6'>
-      <div className='flex gap-2 items-center bg-white p-2 rounded-xl'>
+      <div className='flex gap-2 items-center bg-blue-300 p-2 rounded-xl'>
         <figure>
           <img src={user?.photoURL} alt="" className='h-52 w-36 rounded-lg object-cover' />
         </figure>

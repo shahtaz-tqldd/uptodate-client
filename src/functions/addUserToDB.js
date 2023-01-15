@@ -1,5 +1,5 @@
 export const addToDB = (dbUserInfo) => {
-    fetch('http://localhost:5000/users', {
+    fetch('https://dev-blog-server.vercel.app/users', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'

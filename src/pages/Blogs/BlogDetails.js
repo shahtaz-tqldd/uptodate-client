@@ -25,7 +25,7 @@ const BlogDetails = () => {
             postAuthor: author,
             savedBy: user?.email
         }
-        fetch('http://localhost:5000/blogs/save', {
+        fetch('https://dev-blog-server.vercel.app/blogs/save', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -49,7 +49,7 @@ const BlogDetails = () => {
             postAuthor: author,
             savedBy: user?.email
         }
-        fetch('http://localhost:5000/blogs/favourites', {
+        fetch('https://dev-blog-server.vercel.app/blogs/favourites', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -97,10 +97,10 @@ const BlogDetails = () => {
     }
 
     return (
-        <section className='max-w-[980px] mx-auto pt-4 px-4'>
+        <section className='max-w-[980px] mx-auto pt-4 px-4 mb-16'>
             <Link to='/' className='text-primary text-4xl -ml-16 mt-2 fixed'><BsArrowLeftCircleFill /></Link>
             <img src={img} alt="" className='w-full h-[300px] object-cover rounded-lg' />
-            <h1 className='text-4xl font-bold mt-4 text-neutral'>{title}</h1>
+            <h1 className='text-4xl font-bold mt-4 text-text-color'>{title}</h1>
 
             {/* author */}
             <div className='flex items-center gap-3 mt-5'>
@@ -127,15 +127,15 @@ const BlogDetails = () => {
                         <small>{readTime} {readTime > 1 ? 'mins' : 'min'} read</small>
                     </div>
                 </div>
-                <div className='flex items-center gap-6'>
-                    <button onClick={handleFavourite} className='text-neutral tooltip tooltip-error hover:scale-110 hover:text-error transition duration-300' data-tip="Add this post to favourite"><BsHeartFill /></button>
-                    <button onClick={handleSave} className='text-neutral tooltip tooltip-info hover:scale-110 hover:text-info transition duration-300' data-tip="Save this post for later"><BsFillBookmarkFill /></button>
-                    <button onClick={() => getLink(copyLink)} className='text-neutral tooltip tooltip-success hover:scale-110 hover:text-success transition duration-300' data-tip="Get link of this post"><BsLink45Deg className='text-2xl' /></button>
+                <div className='flex items-center text-base-content gap-6'>
+                    <button onClick={handleFavourite} className='tooltip tooltip-error hover:scale-110 hover:text-error transition duration-300' data-tip="Add this post to favourite"><BsHeartFill /></button>
+                    <button onClick={handleSave} className='tooltip tooltip-info hover:scale-110 hover:text-info transition duration-300' data-tip="Save this post for later"><BsFillBookmarkFill /></button>
+                    <button onClick={() => getLink(copyLink)} className='tooltip tooltip-success hover:scale-110 hover:text-success transition duration-300' data-tip="Get link of this post"><BsLink45Deg className='text-2xl' /></button>
                 </div>
             </div>
 
             {/* blog topics */}
-            <div className='mt-5 flex gap-2 text-xs text-dark'>
+            <div className='mt-5 flex gap-2 text-xs text-[#333]'>
                 {
                     tags?.map((tag, index) => <span className={`${bgGet(index)} px-2 py-1 rounded`} key={index}>{tag}</span>)
                 }

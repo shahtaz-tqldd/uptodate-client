@@ -14,13 +14,13 @@ const FavouritePost = () => {
     const { data: favourites = [], isLoading, refetch } = useQuery({
         queryKey: ['favourites'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/blogs/favourites/${user?.email}`)
+            const res = await fetch(`https://dev-blog-server.vercel.app/blogs/favourites/${user?.email}`)
             const data = await res.json()
             return data
         }
     })
     const handleDeleteFavourite= (id) => {
-        fetch(`http://localhost:5000/blogs/favourites/${id}`, {
+        fetch(`https://dev-blog-server.vercel.app/blogs/favourites/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

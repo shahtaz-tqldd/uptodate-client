@@ -5,7 +5,7 @@ const useAccepted = (email) => {
     const [acceptedLoading, setAcceptedLoading] = useState(true)
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/blogger/accepted/${email}`)
+            fetch(`https://dev-blog-server.vercel.app/users/blogger/accepted/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     setAccepted(data.isAccepted)

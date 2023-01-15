@@ -34,12 +34,12 @@ export const routes = createBrowserRouter([
             {
                 path: '/blogs/:id',
                 element: <BlogDetails />,
-                loader: async({params})=> await fetch(`http://localhost:5000/blogs/${params.id}`)
+                loader: async({params})=> await fetch(`https://dev-blog-server.vercel.app/blogs/${params.id}`)
             },
             {
                 path: '/blogger/:id',
                 element: <ProfilePage />,
-                loader: async({params})=> await fetch(`http://localhost:5000/blogger/${params.id}`)
+                loader: async({params})=> await fetch(`https://dev-blog-server.vercel.app/blogger/${params.id}`)
             },
             {
                 path: '/blogger-request',

@@ -14,13 +14,13 @@ const SavedPost = () => {
     const { data: saved = [], isLoading, refetch } = useQuery({
         queryKey: ['saved'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/blogs/saved/${user?.email}`)
+            const res = await fetch(`https://dev-blog-server.vercel.app/blogs/saved/${user?.email}`)
             const data = await res.json()
             return data
         }
     })
     const handleDeleteSaved = (id) => {
-        fetch(`http://localhost:5000/blogs/saved/${id}`, {
+        fetch(`https://dev-blog-server.vercel.app/blogs/saved/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

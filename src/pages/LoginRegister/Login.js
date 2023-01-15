@@ -43,9 +43,9 @@ const Login = () => {
   }
 
   return (
-    <section className='lg:max-w-[1250px] mx-auto px-5 flex justify-center'>
-      <div className='bg-white rounded-lg mt-20 p-6 border-t-4 border-primary'>
-        <h2 className='text-2xl font-bold mb-5 w-[320px]'>Login</h2>
+    <section className='lg:max-w-[1250px] mx-auto px-5 mb-16 flex justify-center'>
+      <div className='bg-neutral rounded-lg mt-20 p-6 border-t-4 border-primary'>
+        <h2 className='text-2xl font-bold mb-5 text-base-content w-[320px]'>Login</h2>
 
         <form onSubmit={handleSubmit(handleLogin)}>
 
@@ -59,7 +59,7 @@ const Login = () => {
           </span>
           {errors.password && <span className='text-error flex items-center gap-1'><BiError />{errors.password.message}</span>}
 
-          <span onClick={handleForgotPassword} className='text-sm cursor-pointer text-primary'>Forgot Password?</span>
+          <span onClick={handleForgotPassword} className='text-sm cursor-pointer text-info'>Forgot Password?</span>
           <input type="submit" value="Login" className="btn btn-primary text-white w-full rounded-md mt-4 mb-3" />
         </form>
 

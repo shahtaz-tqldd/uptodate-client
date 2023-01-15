@@ -24,7 +24,7 @@ const CategoriesPage = () => {
             addedBy: user?.email
         }
         console.log(categoryInfo)
-        fetch('http://localhost:5000/blogs/categories', {
+        fetch('https://dev-blog-server.vercel.app/blogs/categories', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -40,7 +40,7 @@ const CategoriesPage = () => {
     }
 
     const handleRemoveCategory = (id) => {
-        fetch(`http://localhost:5000/blogs/categories/${id}`, {
+        fetch(`https://dev-blog-server.vercel.app/blogs/categories/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -52,11 +52,11 @@ const CategoriesPage = () => {
     }
     return (
         <div className='ml-10'>
-            <h2 className='font-bold text-xl text-primary mt-6 mb-5'>All Categories</h2>
+            <h2 className='font-bold text-xl text-info mt-6 mb-5'>All Categories</h2>
             <ul className='mb-6 flex flex-col gap-2'>
                 {
                     categories?.map(category => <li key={category._id}
-                        className='text-lg font-bold flex items-center gap-2 text-neutral'>
+                        className='text-lg font-bold flex items-center gap-2 text-base-content'>
                         <RxDotFilled />{category.category}
                         <label htmlFor='delete-modal' onClick={() => setId(category._id)} className="cursor-pointer flex items-center text-error text-sm font-normal gap-1 ml-3"><MdRemoveCircle className='mt-1' />remove</label>
                     </li>

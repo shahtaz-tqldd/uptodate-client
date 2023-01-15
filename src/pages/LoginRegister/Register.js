@@ -61,12 +61,11 @@ const Register = () => {
   }
 
   return (
-    <section className='lg:max-w-[1250px] mx-auto px-5 flex justify-center'>
-      <div className='bg-white rounded-lg my-10 p-6 border-t-4 border-primary'>
-        <h2 className='text-2xl font-bold mb-5'>Open a New Account</h2>
-
+    <section className='lg:max-w-[1250px] mx-auto px-5 mb-16 flex justify-center'>
+      <div className='bg-neutral rounded-lg my-10 p-6 border-t-4 border-primary'>
+        <h2 className='text-2xl font-bold mb-5 text-base-content'>Open a New Account</h2>
+        
         <form onSubmit={handleSubmit(handleRegister)}>
-
           <span className='flex items-center mb-2'><HiUser className='text-2xl mr-2' />
             <input {...register("name", { required: "Please provide your name" })} type="text" placeholder="Your Name" className="input input-bordered w-full max-w-xs rounded-full bg-secondary focus:outline-none focus:bg-accent" />
           </span>

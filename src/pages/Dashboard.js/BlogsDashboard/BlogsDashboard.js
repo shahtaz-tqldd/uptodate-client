@@ -14,13 +14,13 @@ const BlogsDashboard = () => {
   const { data: blogs = [], refetch, isLoading } = useQuery({
     queryKey: ['blogs'],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/dashboard/blogs/${user?.email}`)
+      const res = await fetch(`https://dev-blog-server.vercel.app/dashboard/blogs/${user?.email}`)
       const data = await res.json()
       return data;
     }
   })
   const handleDelete = id => {
-    fetch(`http://localhost:5000/blogs/${id}`, {
+    fetch(`https://dev-blog-server.vercel.app/blogs/${id}`, {
       method: 'DELETE',
     })
       .then(res => res.json())
@@ -34,8 +34,8 @@ const BlogsDashboard = () => {
     return <Loader />
   }
   return (
-    <div className="ml-10 w-[120%]">
-      <h2 className='font-bold text-2xl text-primary mt-6 mb-4 uppercase'>Bloggers</h2>
+    <div className="ml-10 w-[110%]">
+      <h2 className='font-bold text-2xl text-base-content mt-6 mb-4 uppercase'>Blogs</h2>
       {
         blogs.length ?
           <table className="table w-full">

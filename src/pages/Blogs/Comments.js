@@ -17,7 +17,7 @@ const Comments = ({ blogId }) => {
     const { data: comments = [], refetch } = useQuery({
         queryKey: ['comments'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/blogs/comments/${blogId}`)
+            const res = await fetch(`https://dev-blog-server.vercel.app/blogs/comments/${blogId}`)
             const data = await res.json()
             return data
         }
@@ -36,7 +36,7 @@ const Comments = ({ blogId }) => {
             date,
             time
         }
-        fetch(`http://localhost:5000/blogs/comments`, {
+        fetch(`https://dev-blog-server.vercel.app/blogs/comments`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -53,21 +53,21 @@ const Comments = ({ blogId }) => {
     return (
         <div className='lg:w-3/4'>
             {/* comments */}
-            <h2 className='mt-12 text-xl font-bold text-primary mb-4'>Comments</h2>
+            <h2 className='mt-12 text-xl font-bold text-base-content mb-4'>Comments</h2>
 
             {/* new comments */}
 
             {
                 user?.email ?
                     <form onSubmit={handleComment}>
-                        <textarea value={commentWritten} onChange={(e) => setCommentWritten(e.target.value)} placeholder='Write your comment' name='comment' className='w-full h-36 rounded-lg p-3' />
+                        <textarea value={commentWritten} onChange={(e) => setCommentWritten(e.target.value)} placeholder='Write your comment' name='comment' className='text-[#333] w-full h-36 rounded-lg p-3' />
                         <div className='flex justify-end'>
                             <button type="submit"
                                 className={`btn text-info rounded-md normal-case ${commentWritten ? 'shown' : 'hidden'}`}><FiSend />&nbsp;Comment</button>
                             
                         </div>
                     </form>
-                    : <h2 className='text-lg text-neutral'>
+                    : <h2 className='text-lg text-text-color'>
                         Please Login to comment on this Blog
                         <Link to='/login' state={{from:location}} replace className='text-error font-bold'> Login Here</Link>
                     </h2>

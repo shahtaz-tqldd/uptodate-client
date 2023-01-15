@@ -12,13 +12,13 @@ const Bloggers = () => {
   const { data: bloggers = [], refetch, isLoading } = useQuery({
     queryKey: ['bloggers'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/bloggers')
+      const res = await fetch('https://dev-blog-server.vercel.app/bloggers')
       const data = await res.json()
       return data;
     }
   })
   const handleDelete = id => {
-    fetch(`http://localhost:5000/bloggers/${id}`, {
+    fetch(`https://dev-blog-server.vercel.app/bloggers/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'
@@ -36,7 +36,7 @@ const Bloggers = () => {
   }
   return (
     <div className="ml-10 w-[150%]">
-      <h2 className='font-bold text-2xl text-primary mt-6 mb-4 uppercase'>Bloggers</h2>
+      <h2 className='font-bold text-2xl text-base-content mt-6 mb-4 uppercase'>Bloggers</h2>
       {
         bloggers.length ?
           <table className="table w-full">

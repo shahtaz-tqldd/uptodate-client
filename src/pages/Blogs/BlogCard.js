@@ -6,14 +6,14 @@ const BlogCard = ({ blog }) => {
     const { title, readTime, date, author, authorSpeciality, authorImg, img, _id, tags, category } = blog
 
     return (
-        <Link to={`/blogs/${_id}`} className='hover:bg-white hover:shadow-lg duration-300 transition rounded-lg relative'>
+        <Link to={`/blogs/${_id}`} className='hover:bg-neutral hover:shadow-lg duration-300 transition rounded-lg relative'>
             <img src={img} alt="img" className='w-full h-52 object-cover rounded-t-lg' />
             <div className='p-3 flex flex-col justify-between h-48'>
+                {/* title of the blog */}
                 <div>
-                    {/* title of the blog */}
-                    <h2 className='text-xl font-bold text-[#333]'>{title}</h2>
-
+                    <h2 className='text-xl font-bold text-text-color'>{title}</h2>
                 </div>
+
                 {/* author */}
                 <div className='flex items-center gap-2 my-2'>
                     <div className="avatar">
@@ -26,12 +26,15 @@ const BlogCard = ({ blog }) => {
                         <span className='text-xs'>{authorSpeciality}</span>
                     </div>
                 </div>
+
+                {/* category */}
+                <p className='absolute top-3 right-0 bg-success opacity-90 px-5 py-[6px] text-[#333] rounded-l-lg shadow-lg'>{category}</p>
+                
                 <div>
                     {/* tags */}
                     <div className='flex gap-2 text-xs '>
                         {tags.map(tag => <span className='px-3 py-1 bg-secondary rounded'>{tag}</span>)}
                     </div>
-                    <p className='absolute top-3 right-0 bg-success opacity-90 px-5 py-[6px] rounded-l-lg shadow-lg'>{category}</p>
                     <div className='flex items-center justify-between mt-3'>
                         <div className='flex items-center text-blue-400 gap-2'>
                             <MdDateRange />

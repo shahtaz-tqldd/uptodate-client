@@ -15,7 +15,7 @@ const WriteBlogModal = () => {
     const { data: userData=[]} = useQuery({
         queryKey: ['currentUser'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/user/${user?.email}`)
+            const res = await fetch(`https://dev-blog-server.vercel.app/user/${user?.email}`)
             const data = res.json()
             return data
         }
@@ -53,6 +53,7 @@ const WriteBlogModal = () => {
             tags,
             date,
             readTime,
+            addedOn: new Date(),
             author: user?.displayName,
             authorId: userData?._id,
             authorEmail: user?.email,
@@ -71,7 +72,7 @@ const WriteBlogModal = () => {
                     const img = imgData.data.url;
                     const blogInfoWithImg = { ...blogInfo, img }
 
-                    fetch('http://localhost:5000/blogs', {
+                    fetch('https://dev-blog-server.vercel.app/blogs', {
                         method: 'POST',
                         headers: {
                             'Content-type': 'application/json'

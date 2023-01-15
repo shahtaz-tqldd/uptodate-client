@@ -30,18 +30,18 @@ const PaymentCondition = () => {
         },
     ]
     return (
-        <section className='max-w-[1250px] mx-auto pt-4 px-4'>
-            <h1 className='text-3xl font-bold mt-5'>Terms and Condition of Payment from Hash Read</h1>
-            <div className='flex flex-col gap-4 mt-10'>
+        <section className='max-w-[1250px] mx-auto pt-4 mb-16 px-4'>
+            <h1 className='text-3xl font-bold mt-5'>Terms and Condition of Payment from <span className='text-error'>Hash Read</span></h1>
+            <div className='flex flex-col gap-8 mt-10'>
                 {
                     answers.map(answer=><div key={answer.id}>
-                        <h2 className='text-xl font-bold flex items-center gap-2'><GrFormAdd />{answer.ques}</h2>
+                        <h2 className='text-xl font-bold flex items-center gap-2'><GrFormAdd className='text-base-content' />{answer.ques}</h2>
                         <p className='ml-7'>{answer.ans}</p>
                     </div>)
                 }
             </div>
-            <div className='mt-10'>
-                <h2 className='text-lg font-bold text-primary'>For more enquery Email us <br/><span className='font-normal'>hashread@gmail.com</span></h2>
+            <div className='mt-16'>
+                <h2 className='text-lg font-bold text-info'>For more enquery Email us <br/><span className='font-normal'>hashread@gmail.com</span></h2>
             </div>
         </section>
     )

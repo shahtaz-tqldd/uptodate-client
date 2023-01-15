@@ -1,11 +1,14 @@
 # Project Name 
-Uptodate Blog
+
+Hash Read - A Blog Site
+
+Live Website: https://uptodate-c8e99.web.app/
 
 ### Duration 
-28 December 2022 - 06 January 2023
+28 December 2022 - 12 January 2023
 
 ### New Technology
-Bkash Payment Gateway
+SSL Commerz Payment Gateway
 
 ## Websites Features
 
@@ -14,11 +17,15 @@ Bkash Payment Gateway
 - Users can read blogs
 - Search Blogs
 - Users can open an account
-- User can comment
+- Users can comment
 - Users can delete or update their comments
-- Users can request to be a blogger
-- Once a user is accepted by the admin panel he will get access to the blogger dashboard
+- Users can request to be a blogger, to request user has to send a blog sample
+- Once a user is approved by the admin panel, user will get a option in user's menubar to register
+- In register page user has to pay a registration fee to onboard as a blogger
+- After successful payment user will be accepted as a blogger and get access to the blogger dashboard
 - Bloggers can write, edit, and delete their blogs
+- Blogger will have a blogger profile where blogger's all writings will be displayed
+- After a successful conditions blogger will get paid for blogger's blog post
 
 ### From Admin Side
 
@@ -35,7 +42,8 @@ Bkash Payment Gateway
 
 - The frontend  part of the website is developed in React JS
 - Tailwind CSS framework and Daisy UI is used for the design of the site
+- Dark Mode and Light Mode implemented with localstorage functionality
 - The backend is developed in Express with Node JS
 - Firebase is used for user authentication and authorization
 - MongoDB is implemented for the database support
-- Bkash payment method gateway is used for paying the Bloggers
+- SSL commerz method used for get bloggers subscription fee
